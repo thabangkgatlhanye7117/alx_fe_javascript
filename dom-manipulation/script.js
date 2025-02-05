@@ -1,6 +1,6 @@
 
 
-/*let quotes = [];
+/* let quotes = [];
 
 function displayQuote(quote) {
   const quoteDisplay = document.getElementById('quoteDisplay');
@@ -138,9 +138,9 @@ const quotes = [
     {text:'Life is short', category:'Life' }
 
 ];
-
-
-const quotesButton = document.getElementById('newQuote');
+  const storedQuotes = JSON.stringify(quotes);
+      localStorage.setItem("Quotes", storedQuotes);
+  const quotesButton = document.getElementById('newQuote');
 
      quotesButton.addEventListener('click',  function showRandomQuote() {
       //get random index
@@ -150,8 +150,26 @@ const quotesButton = document.getElementById('newQuote');
       const displayQuote = document.getElementById("quoteDisplay");
      displayQuote.innerHTML = `<p>${randomQuote.value}</p>`;
    
-    }
+    })
+      //Add quote to array
 
-    )
+      const addedQuoteText = document.getElementById("newQuoteText").value;
+      const addedQuoteCategory = document.getElementById("newQuoteCategory").value;
+       
+      function addQuote(){
+        if (addedQuoteText && addedQuoteCategory) {
+          const newQuote = {
+            text: addedQuoteText,
+            category: addedQuoteCategory
+          };
+      
+          quotes.push(newQuote);
+
+        }
+      }
+      
+
+
 })
+
 

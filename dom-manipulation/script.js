@@ -168,7 +168,7 @@ const quotes = [
 
         }
       }
-      const exportBtn = document.getElementById("downloadBtn");
+      const exportBtn = document.getElementById("exportQuotesbtn");
 
       exportBtn.addEventListener("click", function(){
         // convert data to string
@@ -188,7 +188,7 @@ const quotes = [
   
 
       } )
-      
+
       function importFromJsonFile(event) {
         const fileReader = new FileReader();
         fileReader.onload = function(event) {

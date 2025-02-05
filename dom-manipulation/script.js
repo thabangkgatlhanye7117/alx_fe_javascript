@@ -139,6 +139,7 @@ const quotes = [
 
 ];
   const storedQuotes = JSON.stringify(quotes);
+  
       localStorage.setItem("Quotes", storedQuotes);
   const quotesButton = document.getElementById('newQuote');
 
@@ -167,7 +168,37 @@ const quotes = [
 
         }
       }
+      const exportBtn = document.getElementById("downloadBtn");
+
+      exportBtn.addEventListener("click", function(){
+        // convert data to string
+             const jsonData = JSON.stringify(quotes)
+        //create blob
+        const blob = new Blob([jsonData], { type: 'application/json' });
+        //create url
+        const url = URL.createObjectURL(blob);
+
+        
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'quotes.json'; 
+  
+        
+        a.click();
+  
+
+      } )
       
+      function importFromJsonFile(event) {
+        const fileReader = new FileReader();
+        fileReader.onload = function(event) {
+          const importedQuotes = JSON.parse(event.target.result);
+          quotes.push(...importedQuotes);
+          saveQuotes();
+          alert('Quotes imported successfully!');
+        };
+        fileReader.readAsText(event.target.files[0]);
+      }
 
 
 })
